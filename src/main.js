@@ -11,9 +11,9 @@ Vue.config.productionTip = false
 Vue.mixin(commonMixins)
 
 // 移动端调试工具
-const VConsole = require('vconsole')
-const vconsole = new VConsole()
-Vue.use(vconsole)
+// const VConsole = require('vconsole')
+// const vconsole = new VConsole()
+// Vue.use(vconsole)
 
 console.log(window.location.href)
 

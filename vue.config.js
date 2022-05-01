@@ -1,6 +1,7 @@
 const path = require('path')
 const Mock = require('mockjs')
 const projectName = process.env.BASE_URL
+const VConsolePlugin = require('vconsole-webpack-plugin')
 
 module.exports = {
   publicPath: projectName,
@@ -22,6 +23,19 @@ module.exports = {
         res.json(Mock.mock({ ret: 0, data: { name: 'post data' } }))
       })
     }
+  },
+  configureWebpack: config => {
+    const buildEnv = process.env.npm_config_set_env || ''
 
-  }
+    const tmp = {
+      plugins: []
+    }
+
+    // 引入vconsole
+    tmp.plugins.push(new VConsolePlugin({
+      enable: buildEnv && buildEnv !== 'prd'
+    }))
+
+    return tmp
+  },
 }
